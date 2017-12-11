@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {# commentaire #}
+
+    <h1>bonjour {{ name }}</h1>
+    <h1>{{ 'la valeur: ' ~ key }}</h1>
+
+    {% for key, value in list %}
+        <p>{{ key ~ ' : ' ~ value }}</p>
+    {% endfor %}
+
+{% endblock %}
