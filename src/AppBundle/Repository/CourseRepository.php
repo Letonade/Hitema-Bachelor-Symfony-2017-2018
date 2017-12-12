@@ -23,9 +23,11 @@ class CourseRepository extends \Doctrine\ORM\EntityRepository
 
         $query = $this->createQueryBuilder('courseAlias')
             ->select('courseAlias.id','courseAlias.name','courseAlias.slug')
-            ->where('courseAlias.name = :nameparameter')
+            ->where('courseAlias.name = :nameParam')
+            ->orWhere('courseAlias.name LIKE :likeParam')
             ->setParameters([
-                'nameparameter' => "M1-Web"
+                'nameParam' => "M1-Web",
+                'likeParam' => "%J%"
             ])
             ->getQuery()
             ->getResult()
