@@ -32,6 +32,14 @@ class CourseRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult()
         ;
+        // requête de regroupement (on écrase celle ci-dessus)
+
+        $query = $this->createQueryBuilder('courseAlias')
+            ->select('courseAlias')
+
+            ->getQuery()
+            ->getResult()
+        ;
 
         return $query;
         //retour des résultats
