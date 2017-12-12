@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Hobby;
+use AppBundle\Entity\OperatingSystem;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -43,32 +44,43 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add('lastname',TextType::class)
-            ->add('email', EmailType::class,[
-                'required' => false,
-            ])
-            ->add('message', TextareaType::class,[
-                'required' => false,
-            ])
+            ->add('email', EmailType::class)
+            ->add('message', TextareaType::class)
             /*
              * EntityType : permet de relier un champ à une entité
              * class permet de définir l'entité ciblée
              * choice_label : choix de la propriété de l'entité à afficher
              *
              * choix de l'affichage
-             *      expanded : affichage de plusieur champs Default : false
-             *      multiple : sélection multiple           Default : false
+             *      expanded : affichage de plusieurs champs; par défaut false
+             *      multiple : sélection de plusieurs choix; par défaut false
+             *   combinaisons possibles:
+             *      liste déroulante : expanded false / multiple false
+             *      boutons radio : expanded true / multiple false
+             *      cases à cocher : expanded true / multiple true : obligatoire pour les many to many
+             *
              */
             ->add('hobbies', EntityType::class, [
                 'class' => Hobby::class,
                 'choice_label' => 'name',
-                'multiple' => true,
                 'expanded' => true,
+                'multiple' => true,
                 'constraints' => [
                     new Count([
-                        'min' => 0,
-                        'minMessage' => "Vous êtes trop négatif"
-                        ])
-                    ]
+                        'min' => 1,
+                        'minMessage' => "Vous devez sélectionner au minimum un loisir",
+                    ])
+                ]
+            ])
+
+            /*
+             * système d'exploitation : boutons radio
+             * */
+            ->add('operatingSystem', EntityType::class, [
+                'class' => OperatingSystem::class,
+                'choice_label' => 'name',
+                'expanded' => true,
+                'multiple' => false
             ])
         ;
     }

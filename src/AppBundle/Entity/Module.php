@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * OperatingSystem
+ * Module
  *
- * @ORM\Table(name="operating_system")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\OperatingSystemRepository")
+ * @ORM\Table(name="module")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ModuleRepository")
  */
-class OperatingSystem
+class Module
 {
     /**
      * @var int
@@ -24,7 +24,7 @@ class OperatingSystem
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=20, unique=true)
+     * @ORM\Column(name="name", type="string", length=30, unique=true)
      */
     private $name;
 
@@ -44,7 +44,7 @@ class OperatingSystem
      *
      * @param string $name
      *
-     * @return OperatingSystem
+     * @return Module
      */
     public function setName($name)
     {

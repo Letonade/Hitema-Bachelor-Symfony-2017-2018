@@ -59,6 +59,13 @@ class Contact
     private $hobbies;
 
     /**
+     * @ORM\ManyToOne(targetEntity="OperatingSystem")
+     * @ORM\JoinColumn(name="operating_system_id", referencedColumnName="id")
+     */
+    private $operatingSystem;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -163,5 +170,45 @@ class Contact
     {
         return $this->message;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->hobbies = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add hobby
+     *
+     * @param \AppBundle\Entity\Hobby $hobby
+     *
+     * @return Contact
+     */
+    public function addHobby(\AppBundle\Entity\Hobby $hobby)
+    {
+        $this->hobbies[] = $hobby;
+
+        return $this;
+    }
+
+    /**
+     * Remove hobby
+     *
+     * @param \AppBundle\Entity\Hobby $hobby
+     */
+    public function removeHobby(\AppBundle\Entity\Hobby $hobby)
+    {
+        $this->hobbies->removeElement($hobby);
+    }
+
+    /**
+     * Get hobbies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHobbies()
+    {
+        return $this->hobbies;
+    }
+}

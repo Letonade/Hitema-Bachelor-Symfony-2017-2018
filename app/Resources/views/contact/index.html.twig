@@ -24,7 +24,8 @@
                         <th>Prénom</th>
                         <th>Email</th>
                         <th>Message</th>
-                        <th>Hobbies</th>
+                        <th>Loisirs</th>
+                        <th>Système d'exploitation</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -34,13 +35,23 @@
                             <td>{{ value.firstname }}</td>
                             <td>{{ value.email }}</td>
                             <td>{{ value.message }}</td>
-                            <td>{# hobbies en many to many est un tableau #}
+                            <td>
+                                {# hobbies est un array #}
                                 {% for hobby in value.hobbies %}
                                     {{ hobby.name }}
                                 {% endfor %}
                             </td>
                             <td>
-                            <a href="{{ url('contact.update', { 'id' : value.id } ) }}" class="btn btn-warning">Modifier</a>
+                                {# one to many renvoie un objet #}
+                                {#% if value.operatingSystem.name is defined %}
+                                    {{ value.operatingSystem.name }}
+                                {% else %}
+                                    <p class="alert alert-danger">Inconnu</p>
+                                {% endif %#}
+                                {{ value.operatingSystem.name is defined ? value.operatingSystem.name : 'Inconnu' }}
+                            </td>
+                            <td>
+<a href="{{ url('contact.update', { 'id' : value.id } ) }}" class="btn btn-warning">Modifier</a>
                             </td>
                             <td>
                                 <a href="{{ url('contact.delete', { 'id' : value.id } ) }}" class="btn btn-danger">Supprimer</a>

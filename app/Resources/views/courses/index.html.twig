@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Formations</h1>
+                {% for course in results %}
+                    <p><a href="{{ url('course.detail', { 'slug' : course.slug } ) }}">{{ course.name }}</a></p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{%  endblock %}

@@ -42,8 +42,12 @@
                     {{ form_widget(form.message) }}
                 </p>
                 <p>
-                    {{ form_label(form.hobbies, 'Hobbies :') }}<br>
+                    {{ form_label(form.hobbies, 'Loisirs :') }}<br>
                     {{ form_widget(form.hobbies) }}
+                </p>
+                <p>
+                    {{ form_label(form.operatingSystem, "Système d'exploitation préféré :") }}<br>
+                    {{ form_widget(form.operatingSystem) }}
                 </p>
                 <p>
                     <input type="submit" class="btn btn-primary">

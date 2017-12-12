@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-/*use Symfony\Component\Validator\Constraints as Assert;*/
+
 /**
  * Contact
  *
@@ -38,15 +38,14 @@ class Contact
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=100,nullable=true)
+     * @ORM\Column(name="email", type="string", length=100)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="message", type="text", nullable=true)
-     *
+     * @ORM\Column(name="message", type="text")
      */
     private $message;
 
@@ -58,6 +57,13 @@ class Contact
      * )
      */
     private $hobbies;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="OperatingSystem")
+     * @ORM\JoinColumn(name="operating_system_id", referencedColumnName="id")
+     */
+    private $operatingSystem;
+
 
     /**
      * Get id
@@ -204,5 +210,29 @@ class Contact
     public function getHobbies()
     {
         return $this->hobbies;
+    }
+
+    /**
+     * Set operatingSystem
+     *
+     * @param \AppBundle\Entity\OperatingSystem $operatingSystem
+     *
+     * @return Contact
+     */
+    public function setOperatingSystem(\AppBundle\Entity\OperatingSystem $operatingSystem = null)
+    {
+        $this->operatingSystem = $operatingSystem;
+
+        return $this;
+    }
+
+    /**
+     * Get operatingSystem
+     *
+     * @return \AppBundle\Entity\OperatingSystem
+     */
+    public function getOperatingSystem()
+    {
+        return $this->operatingSystem;
     }
 }
