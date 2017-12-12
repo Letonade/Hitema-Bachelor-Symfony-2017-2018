@@ -44,7 +44,7 @@ class CoursesController extends Controller
     }
 
     /**
-     * @Route("/course/query",name="course.query")
+     * @Route("/courses/query",name="course.query")
      */
     public function queryAction(){
         //doctrine
@@ -53,7 +53,6 @@ class CoursesController extends Controller
         //appel d'une méthode de la classe de dépot (repository)
         $result = $doctrine->getRepository(Course::class)->testQuery();
         exit(dump($result));
-
     }
 
 }

@@ -15,11 +15,13 @@ class CourseRepository extends \Doctrine\ORM\EntityRepository
          *      getResult : renvoie un array d'objets
          *
          **/
+
         $query = $this->createQueryBuilder('courseAlias')
             ->getQuery()
             ->getResult()
         ;
 
-        //retour des résultate
+        return $query;
+        //retour des résultats
     }
 }
