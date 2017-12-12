@@ -10,6 +10,11 @@ class CourseRepository extends \Doctrine\ORM\EntityRepository
         /*
          *create query builder : constructeur de requête
          *      Définir l'Alias de l'entité
+         * méthode aux noms des formule SQL :
+         *      Select
+         *      => choix des propriété à affiché (en tableau)
+         *      WHERE,ANDWHERE,ORWHERE
+         *      => Where en premier connexion, puis les autres
          * getQuery : éxécution de la requête / appel en avant dernière position
          *Récupération des résultats :
          *      getResult : renvoie un array d'objets
@@ -17,6 +22,11 @@ class CourseRepository extends \Doctrine\ORM\EntityRepository
          **/
 
         $query = $this->createQueryBuilder('courseAlias')
+            ->select('courseAlias.id','courseAlias.name','courseAlias.slug')
+            ->where('courseAlias.name = :nameparameter')
+            ->setParameters([
+                'nameparameter' => "M1-Web"
+            ])
             ->getQuery()
             ->getResult()
         ;
